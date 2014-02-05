@@ -1,0 +1,32 @@
+(1) Engineering exercise
+
+- Task: Facebook Clone. Make a simple Facebook clone with basic
+functionality.  You're free to use any framework you would like
+(Rails, Django, etc...).  Deploy it on heroku (or any platform) and
+send us either a link to GitHub or zip up the files and send them
+over. Make sure to link us with any libraries
+you are using. Here are the pages we'd like you to make:
+
+1) Sign up page - A simple page for signing up - username, password, name.
+2) Sign in page - A page for signing in, self explanatory
+3) User profile page - A page for a user profile.  You should be able
+to post links/notes/text on your own profile page, but other users'
+pages should be read-only.  You should be able to "friend" other users
+from this page (no "friend acceptance necessary", but it should be a
+two-way relationship)
+4) News feed page - Page for viewing your news feed - this should be
+an aggregation of posts from all your friends.
+5) Directory page - List of user pages, with links to their profiles.
+
+Don't worry about styling too much - we're just looking for
+functionality. Ruven (cced) is our Head of Product and can answer any
+questions you have about the engineering exercise
+
+(2) Creative exercise
+
+- Please think of 3 ideas with the goal of acquiring new users that
+demonstrate your creativity.
+- Like all ideas we explore in Growth, your ideas should have
+a shot at dramatically moving the needle.
+- Please refer to publicly available information about OrderAhead
+(orderaheadapp.com, app/android store) as you brainstorm.
