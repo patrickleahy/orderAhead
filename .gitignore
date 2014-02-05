@@ -4,3 +4,4 @@ push
 rsyncignore
 sql
 Assignment.txt
+credentials.js

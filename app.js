@@ -1,11 +1,8 @@
 
 /**
  * Module dependencies.
-
- //running node on production
- nohup node app.js &
- 54.221.206.92
  */
+ 
 var mysql = require('mysql');
 var express = require('express');
 var routes = require('./routes');
@@ -13,6 +10,7 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var app = express();
+var credentials = require('./credentials');
 
 // Other dependencies
 var passwordHash = require('password-hash');
@@ -37,8 +35,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-// var db = exports.db = mysql.createConnection({host:'localhost', user:'root', database:'orderAhead', supportBigNumbers:true, typeCast:true});
-var db = exports.db = mysql.createConnection({host:'orderahead.crvlki5fknye.us-east-1.rds.amazonaws.com',port: 3306, user:'orderAhead',password:'orderAhead1414',database:'orderAhead',supportBigNumbers:true, typeCast:true});
+var db = exports.db = mysql.createConnection({credentials.host,port: credentials.port, user: credentials.user, password: credentials.password, database: credentials.database, supportBigNumbers:true, typeCast:true});
 
 app.get('/', routes.index);
 app.get('/users', user.list);
