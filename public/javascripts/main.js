@@ -43,9 +43,12 @@ $(document).ready(function() {
 
     if (nullFieldsCheck($(this))) {
       var data = $(this).serialize();
+
       makeAjaxRequest('/statusUpdate', data, function (res) {
         var res = JSON.parse(res);
-        $('#wall').append('<div class="wallItem"><p>' + res.body.body + '</p></div>');
+
+        $('.noNews').parent().empty();
+        $('#wall').append('<div class="wallItem"><p><b>Me: </b>' + res.body.body + '</p></div>');
       });
     } else {
       displayError("Warning! Status update cannot be null");
@@ -73,11 +76,22 @@ $(document).ready(function() {
     event.preventDefault();
 
     var data = {'user_id': $(this).attr('href').split('/')[2]};
+    var currentId = JSON.parse($.cookie('myData')).id;
+
     makeAjaxRequest('/friendsPage', data, function (res) {
       var res = JSON.parse(res);
       $('#wall').empty();
-      for (var i = 0; i < res.body.news.length; i++) {
-        $('#wall').append('<div class="wallItem"><p>' + res.body.news[i].body + '</p></div>');
+      
+      if (res.body.news.length > 0) {
+        for (var i = 0; i < res.body.news.length; i++) {
+          if (res.body.news[i].user_id === currentId) {
+            $('#wall').append('<div class="wallItem"><p><b>Me: </b>' + res.body.news[i].body + '</p></div>');
+          } else {
+            $('#wall').append('<div class="wallItem"><p><b>' + res.body.news[i].firstName + ' ' + res.body.news[i].lastName + ': </b>' + res.body.news[i].body + '</p></div>');
+          }
+        }        
+      } else {
+        $('#wall').append('<div class="wallItem noNews"><p>No news</p></div>');
       }
 
       $("#newsItems").hide();
@@ -91,8 +105,6 @@ $(document).ready(function() {
     event.preventDefault();
 
     makeAjaxRequest('/viewNews', null, function (res) {
-      // console.log(res);
-
       var res = JSON.parse(res);
       fillNewsFeed(res.body.news);
       $("#newsItems").show();
@@ -124,15 +136,16 @@ $(document).ready(function() {
 
     var data = {'user_id': $(this).attr('href').split('/')[2]};
     makeAjaxRequest('/friendsPage', data, function (res) {
-      console.log(res);
+      
       var res = JSON.parse(res);
       var fullName = res.body.user.firstName + " " + res.body.user.lastName;
       $('#friendName').text(fullName);
       $('.friendMe').attr('href', '/users/' + res.body.user.id);
 
-      if (res.body.news > 0) {
-        for (var i = 0; i < res.body.news; i++) {
-          $('.friendWall').append('<div class="wallItem"><p>' + res.body.news[i].body + '</p></div>');
+      $('.friendWall').empty();
+      if (res.body.news.length > 0) {
+        for (var i = 0; i < res.body.news.length; i++) {
+          $('.friendWall').append('<div class="wallItem"><p><b>' + res.body.news[i].firstName + " " + res.body.news[i].lastName + ':</b> ' + res.body.news[i].body + '</p></div>');
         }        
       } else {
         $('.friendWall').append('<div class="wallItem"><p>No news</p></div>');
@@ -149,14 +162,13 @@ $(document).ready(function() {
 });
 
 function displayError (text) {
-  console.error(text);
   $("#errors").show();
   $('#errors p.alert').text(text);
   $("#errors").fadeOut(2500);
 }
 
 function displayNotification (text) {
-  console.log(text);
+  
   $("#notifications").show();
   $('#notifications p.alert').text(text);
   $("#notifications").fadeOut(2500);
@@ -177,15 +189,18 @@ function fillNewsFeed(news) {
   $('#newsWrapper').empty();
 
   for (var i = 0; i < news.length; i++) {
-    $('#newsWrapper').append('<div class="newsItem"><p>' + news[i].body + '</p></div>');
+    $('#newsWrapper').append('<div class="newsItem"><p><b>' + news[i].firstName + ' ' + news[i].lastName + ':</b> ' + news[i].body + '</p></div>');
   }
 }
 
 function fillDirectory(users) {
   $('#directoryWrapper').empty();
 
+  var currentId = JSON.parse($.cookie('myData')).id;
   for (var i = 0; i < users.length; i++) {
-    $('#directoryWrapper').append('<div class="directoryItem"><p><a href="/users/' + users[i].id + '" class="viewFriendProfile">' + users[i].firstName + " " + users[i].lastName + '</a></p></div>');
+    if (currentId !== users[i].id) {
+      $('#directoryWrapper').append('<div class="directoryItem"><p><a href="/users/' + users[i].id + '" class="viewFriendProfile">' + users[i].firstName + " " + users[i].lastName + '</a></p></div>');  
+    }
   }
 }
 
@@ -213,7 +228,6 @@ function makeAjaxRequest (url, data, callback) {
 }
 
 function loginRoutine (res) {
-  console.log(res);
   var res = JSON.parse(res);
   if (res.statusCode === 200) {
     $.cookie('myData', JSON.stringify(res.body.myData));

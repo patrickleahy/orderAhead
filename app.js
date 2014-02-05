@@ -79,16 +79,26 @@ app.post('/signUp', function(req, res) {
   req.body.hashedPassword = passwordHash.generate(req.body.password);
   delete req.body.password;
 
-  db.query('INSERT INTO users SET ?', req.body, function (err, result) {
-    if (err) {
-      res.send(JSON.stringify({'statusCode': 500}));
-    } else {
-      req.body.id = result.insertId;
-      getInitialData(req.body, function(body) {
-        res.send(JSON.stringify({'statusCode': 200, 'body': body}));  
+  db.query('SELECT * FROM users WHERE email = ?', req.body.email, function (err, users, result) {
+    if (err) res.send(JSON.stringify({'statusCode': 500}));
+
+    if (users.length === 0) {
+      db.query('INSERT INTO users SET ?', req.body, function (err, result) {
+        if (err) {
+          res.send(JSON.stringify({'statusCode': 500}));
+        } else {
+          req.body.id = result.insertId;
+          getInitialData(req.body, function(body) {
+            res.send(JSON.stringify({'statusCode': 200, 'body': body}));  
+          });
+        }
       });
+    } else {
+      res.send(JSON.stringify({'statusCode': 400, 'message': "There's already a user with this email address"}));
     }
+
   });
+
 });
 
 app.post('/statusUpdate', function(req, res) {
@@ -104,7 +114,7 @@ app.post('/statusUpdate', function(req, res) {
 
 app.post('/friendsPage', function(req, res) {
   console.log(req.body);
-  db.query('SELECT * FROM news WHERE user_id = ?', req.body.user_id, function (err, news, results) {
+  db.query('SELECT * FROM news newsItem LEFT JOIN users user ON user.id = newsItem.user_id WHERE user_id = ?', req.body.user_id, function (err, news, results) {
 
     db.query('SELECT * FROM users WHERE id = ?', req.body.user_id, function (err, user, results) {
 
@@ -121,7 +131,7 @@ app.post('/friendsPage', function(req, res) {
 });
 
 app.post('/viewNews', function(req, res) {
-  db.query('SELECT * FROM news', function (err, news, results) {
+  db.query('SELECT * FROM news newsItem LEFT JOIN users user ON user.id = newsItem.user_id', function (err, news, results) {
     var body = { 'news': news };
     console.log(JSON.stringify(body));
     if (err) {
@@ -154,7 +164,7 @@ function getInitialData(myData, callback) {
   if (myData !== null) {
     delete myData.hashedPassword;
     db.query('SELECT id, firstName, lastName, email FROM users', function (err, users, result) {
-      db.query('SELECT * FROM news', function (err, news, result) {
+      db.query('SELECT * FROM news newsItem LEFT JOIN users user ON user.id = newsItem.user_id', function (err, news, result) {
         if (err) throw err;
         var body = { 'myData': myData, 'users': users, 'news': news };
         callback(body);

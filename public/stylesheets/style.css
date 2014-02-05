@@ -19,6 +19,10 @@ a {
   color: #00B7FF;
 }
 
+b {
+  font-weight: bold;
+}
+
 #errors, #notifications {
   position:absolute;
   left:0;
@@ -198,7 +202,7 @@ input.login {
   padding-top: 20px;
 }
 
-.newsItem {
+.newsItem, #directoryItems, .wallItem {
   border-top: 1px solid #CCC;
   width: 50%;
   min-height: 30px;
@@ -220,10 +224,8 @@ input.login {
   display: none;
 }
 
-#wall {
-  margin-top: 30px;
+#wall, .wallItem {
   width: 70%;
-  border-top: 1px solid #CCC;
 }
 
 #friendProfile {
