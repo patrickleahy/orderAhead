@@ -1,0 +1,236 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 22px;
+  margin-bottom: 25px;
+  color: #4e5665;
+  font-family: 'Freight Sans', 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#errors, #notifications {
+  position:absolute;
+  left:0;
+  right:0;
+  top: 0;
+  margin-left:auto;
+  margin-right:auto;
+  width: 30%;
+  padding: 2em 1em 2em 1em;
+  color: white;
+  text-align: center;
+  display: none;
+  z-index: 100;
+  background-color: red;
+}
+
+#logOut {
+  margin-top: 1em;
+}
+
+#notifications {
+  background-color: green;
+}
+
+#header {
+  height: 82px;
+  width: 100%;
+  background-color: #3b5998;
+  position: relative;
+}
+
+#logo {
+  margin-left: 12%;
+  position: absolute;
+  bottom: 11px;
+}
+
+#loginWrapper {
+  float: right;
+  margin-right: 12%;
+}
+
+#signUpBackground {
+  background-color: #edeff4;
+  height: 100%;
+}
+
+#signUpWrapper {
+  margin-left: auto;
+  margin-right: auto;
+  width: 35%;
+  padding-top: 30px;
+  margin-bottom: 200px;
+}
+
+.login {
+  font-size: 11px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+label.login {
+  color: white;
+}
+
+input.login {
+  border: 1px solid black;
+  height: 18px;
+  width: 140px;
+  margin-right: 10px;
+  padding-left: 2px;
+}
+
+.formItem {
+  display: inline-block;
+  margin-top: 15px;
+}
+
+.loginButton { 
+  background-image: url(/images/login.png);
+  background-position:  0px 0px;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 25px;
+  border: 0px;
+  cursor: pointer;
+  outline: 0;
+  color: transparent; 
+}
+
+.signUpButton {
+  background-image: url(/images/signUp.png);
+  background-position:  0px 0px;
+  background-repeat: no-repeat;
+  width: 197px;
+  height: 44px;
+  border: 0px;
+  cursor: pointer;
+  outline: 0;
+  color: transparent; 
+  margin-top: 10px;
+}
+
+.signUp {
+  height: 35px;
+  font-size: 16px;
+  padding-left: 5px;
+  margin-bottom: 7px;
+  border: 1px solid #CCC;
+  width: 342px;
+}
+
+
+/* =========================================================================== */
+/* ================================ INNER PAGES ============================== */
+/* =========================================================================== */
+
+#innerPages {
+  display: none;
+}
+
+#innerHeader {
+  height: 38px;
+  width: 100%;
+  background-color: #3b5998;
+  color: red;
+  position: relative;
+}
+
+#smallLogo {
+  position: absolute;
+  left: 3.5%;
+  bottom: 4px;
+}
+
+#leftColumn {
+  position:absolute;
+  overflow:hidden;
+  z-index:-1;
+  border-right: 1px solid #CCC;
+  width: 20%;
+}
+
+#profileIcon {
+  float: right;
+  margin-top: 27px;
+  margin-right: 60px;
+  font-size: 11px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+#profileDirectory {
+  float: right;
+  margin-right: 52px;
+  font-size: 11px;
+}
+
+#viewDirectory{
+  border-top: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
+  padding-bottom: 1em;
+  padding-top: 1em;
+}
+
+#profileIcon a, #profileDirectory a {
+  text-decoration: none;
+  color: #3b5998;
+}
+
+#rightColumn {
+  width: 79%;
+  float: right;
+  padding-top: 20px;
+}
+
+.newsItem {
+  border-top: 1px solid #CCC;
+  width: 50%;
+  min-height: 30px;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.heavy {
+  font-weight: bold;
+  padding-bottom: 2px;
+  display: block;
+}
+
+#directoryItems {
+  display: none;
+}
+
+#profilePage {
+  display: none;
+}
+
+#wall {
+  margin-top: 30px;
+  width: 70%;
+  border-top: 1px solid #CCC;
+}
+
+#friendProfile {
+  display: none;
+}
+
+
+
+
+

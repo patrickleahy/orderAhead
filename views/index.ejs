@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Patrick Leahy - OrderAhead Coding Challenge</title>
+    <link rel="stylesheet" href="/stylesheets/reset.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="shortcut icon" href="/images/fb.ico">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/javascripts/jqueryCookie.js"></script>
+    <script src="/javascripts/main.js"></script>
+  </head>
+  <body>
+    <div id="errors"><p class="alert"></p></div>
+    <div id="notifications"><p class="alert"></p></div>
+    
+    <div id="splashPage">
+      <div id="header">
+        <img src="/images/facebook.png" alt="Logo" id="logo">
+        <div id="loginWrapper">
+          <form id="login">
+            <div class='formItem'>
+              <label class="login">Email</label>
+              <input type="text" class="login" value="leahy16@gmail.com" name="email">
+            </div>
+
+            <div class='formItem'>
+              <label class="login">Password</label>
+              <input type="password" class="login" value="test123" name="password">
+            </div>
+
+            <div class='formItem'>
+              <label class="login"></label>
+              <input type="submit" class="loginButton">
+            </div>
+          </form>
+        </div>
+      </div>
+      <div id="signUpBackground">
+        <div id="signUpWrapper">
+          <h1>Sign Up</h1>
+          <h2>It's free and always will be.</h2>
+
+          <form id="signUp">
+            <input type="text" class="signUp" style="width: 165px" name="firstName" value="Patrick" placeholder="First name">
+            <input type="text" class="signUp" style="width: 165px" name="lastName" value="Leahy" placeholder="Last name"><br>
+            <input type="text" class="signUp" name="email" value="leahy16@gmail.com" placeholder="Your email address"><br>
+            <input type="password" class="signUp" name="password" value="test123" placeholder="New password"><br>
+            <input type="submit" class="signUpButton">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="innerPages">
+      <div id="innerHeader">
+        <a href="" class="viewNewsFeed"><img src="/images/facebookSmall.png" alt="Small Logo" id="smallLogo"></a>
+      </div>
+
+      <div id="newsFeed">
+        <div id="leftColumn">
+          <div id="profileIcon">
+            <a href="" class="heavy viewMyProfile"></a>
+            <a href="" class="viewMyProfile link">View Profile</a> <br><br>
+            <a href="" class="heavy" id="viewDirectory">View Directory</a>
+            <a href="" class="heavy" id="logOut">Log Out</a>
+          </div>
+        </div>
+
+        <div id="rightColumn">
+          <div id="newsItems">
+            <h2>News Feed</h2>
+            <div id = "newsWrapper">
+              <div class="newsItem"><p>News Item 1</p></div>
+              <div class="newsItem"><p>News Item 2</p></div>
+              <div class="newsItem"><p>News Item 3</p></div>
+            </div>
+          </div>
+
+          <div id="directoryItems">
+            <h2>Friend Directory</h2>
+            <div id = "directoryWrapper"></div>
+          </div>
+
+          <div id="profilePage">
+            <h2>Patrick's Profile</h2>
+
+            <div id="statusUpdateWrapper">
+              <form id="statusUpdate">
+                <div class='formItem'>
+                  <label>Status Update</label>
+                  <input type="text" class="postNews" placeholder="What's on your mind?" name="body">
+                  <input type="hidden" name="user_id" value="" class="user_id">
+                  <input type="submit" class="postNews">
+                </div>
+              </form>
+            </div>
+
+            <div id="wall"></div>
+          </div>
+
+          <div id="friendProfile">
+            <h2 id='friendName'></h2>
+
+            <div id="statusUpdateWrapper">
+              <a href="" class="friendMe">+1 Add Friend</a>
+            </div>
+
+            <div id="wall" class="friendWall"></div>
+          </div>
+
+        </div>
+      </div>
+
+
+    </div>
+
+  </body>
+</html>
