@@ -2,7 +2,7 @@
 /**
  * Module dependencies.
  */
- 
+
 var mysql = require('mysql');
 var express = require('express');
 var routes = require('./routes');
@@ -35,7 +35,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-var db = exports.db = mysql.createConnection({credentials.host,port: credentials.port, user: credentials.user, password: credentials.password, database: credentials.database, supportBigNumbers:true, typeCast:true});
+var db = exports.db = mysql.createConnection({host: credentials.host, port: credentials.port, user: credentials.user, password: credentials.password, database: credentials.database, supportBigNumbers:true, typeCast:true});
 
 app.get('/', routes.index);
 app.get('/users', user.list);
